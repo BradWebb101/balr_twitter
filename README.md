@@ -1,7 +1,7 @@
 ## Basic readme
 
 ##Installation 
-- from /front-end run
+- from ./front-end run
 ```bash 
 pip install -r requirements.txt
 ```
@@ -10,7 +10,6 @@ in command lin
 ```cmd
 python app.py
 ```
-
 
 ### Files i have played with 
 
