@@ -1,7 +1,16 @@
 ## Basic readme
 
-### How to run
-#### app.py in front end folder
+##Installation 
+- from /front-end run
+```bash 
+pip install -r requirements.txt
+```
+
+in command lin 
+```cmd
+python app.py
+```
+
 
 ### Files i have played with 
 
