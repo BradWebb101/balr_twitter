@@ -5,11 +5,10 @@ from helpers import get_data_dict
 
 @app.route('/', methods=["GET"])
 def home():
-        data_dict = get_data_dict.get_data_dict().data_dict
-        return render_template('index.html', data=data_dict)
+        data_dict = get_data_dict.get_data_dict().data
+        if data_dict:
+                return render_template('index.html', data=data_dict)
+        else:
+            return render_template("404.html")  
 
-#404 Page
-@app.route('/404', methods=["GET"])
-def errorpage():
-    return render_template("404.html")
 
