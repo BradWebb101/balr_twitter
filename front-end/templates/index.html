@@ -1,11 +1,13 @@
 {% include 'admin-layout.html' %}
 </br>
+<body id="page-top">
+
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800"> 12 Month's of Balr Twitter @ {{data['date']['S']}}</h1>
+            <h1 class="h3 mb-0 text-gray-800"> 12 Month's of Balr Twitter @ {{ data['date']['S'] }}</h1>
             
           </div>
 
@@ -53,7 +55,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total retweets (12m)</div>
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total retweets</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">{{ data['tweet_counts']['M']['retweet_count']['N'] }} </div>
                     </div>
                     <div class="col-auto">
@@ -70,7 +72,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Total favourites (12m)</div>
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Total favourites</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">{{data['tweet_counts']['M']['favourite_count']['N']}}</div>
                     </div>
                     <div class="col-auto">
@@ -118,13 +120,17 @@
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Add in most retweeted/favourited tweet here</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Most Favourited Tweet</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
                   <div class="chart-area">
+                    
                     <!-- add in test from most retweeted/favourited (Need to get the drop down working first) -->
-                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="static/img/undraw_posting_photo.svg" alt="">
+                    <p>Date: {{data['tweet_counts']['M']['most_favourited']['M']['date_of_favourite']['S']}}</p>
+                    <p>Favourited Count: {{data['tweet_counts']['M']['most_favourited']['M']['favourites']['N']}}</p>
+                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 7rem;" src="static/img/Twitter-Download-PNG.png" alt="">
+                    <p>"{{data['tweet_counts']['M']['most_favourited']['M']['text']['S']}}"</p>
                   </div>
                   </div>
                 </div>
@@ -136,59 +142,108 @@
           <div class="row">
 
             <!-- Content Column -->
-            <div class="col-lg-6 mb-4">
+            <div class="col-xl-4 col-lg-4">
 
               <!-- Project Card Example -->
               <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Most associated hashtags with #Balr</h6>
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Hashtags most seen with #Balr ({{data['top_5_hashtags']['M']['tweet_count']['N']}} tweets)</h6>
                 </div>
                 <div class="card-body">
                   <h4 class="small font-weight-bold">#{{ data['top_5_hashtags']['M']['1']['M']['hashtag']['S'] }} <span class="float-right">{{ data['top_5_hashtags']['M']['1']['M']['count']['N'] }}</span></h4>
                   <div class="progress mb-4">
-                    <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div id= "hashtag_1" class="progress-bar bg-danger" role="progressbar" style="" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                   <h4 class="small font-weight-bold">#{{ data['top_5_hashtags']['M']['2']['M']['hashtag']['S'] }}<span class="float-right">{{ data['top_5_hashtags']['M']['2']['M']['count']['N'] }}</span></h4>
                   <div class="progress mb-4">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div id="hashtag_2" class="progress-bar bg-warning" role="progressbar" style="" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                   <h4 class="small font-weight-bold">#{{ data['top_5_hashtags']['M']['3']['M']['hashtag']['S'] }}<span class="float-right">{{ data['top_5_hashtags']['M']['3']['M']['count']['N'] }}</span></h4>
                   <div class="progress mb-4">
-                    <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div id="hashtag_3" class="progress-bar" role="progressbar" style="" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                   <h4 class="small font-weight-bold">#{{ data['top_5_hashtags']['M']['4']['M']['hashtag']['S'] }}<span class="float-right">{{ data['top_5_hashtags']['M']['4']['M']['count']['N'] }}</span></h4>
                   <div class="progress mb-4">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div id="hashtag_4" class="progress-bar bg-info" role="progressbar" style="" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                   <h4 class="small font-weight-bold">#{{ data['top_5_hashtags']['M']['5']['M']['hashtag']['S'] }}<span class="float-right">{{ data['top_5_hashtags']['M']['5']['M']['count']['N'] }}</span></h4>
                   <div class="progress">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div id="hashtag_5" class="progress-bar bg-success" role="progressbar" style="" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                 </div>
               </div>
+            </div>
+             
 
-              </div>
-
-            <div class="col-lg-6 mb-4">
+            <div class="col-xl-8 col-lg-7">
 
               <!-- Illustrations -->
               <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">5 most recent tweets with #Balr</h6>
                 </div>
                 <div class="card-body">
-                  <div class="text-center">
-                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="static/img/undraw_posting_photo.svg" alt="">
-                  </div>
-                  <p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a constantly updated collection of beautiful svg images that you can use completely free and without attribution!</p>
-                  <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on unDraw &rarr;</a>
-                </div>
+                    <div class="table-responsive">
+                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                          <tr>
+                            <th>Date</th>
+                            <th>User name</th>
+                            <th>Location</th>
+                            <th>Friends</th>
+                            <th>Followers</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>{{data['recent_5_hashtags']['L'][0]['M']['created_at']['S']}}</td>
+                            <td>{{data['recent_5_hashtags']['L'][0]['M']['screen_name']['S']}}</td>
+                            <td>{{data['recent_5_hashtags']['L'][0]['M']['location']['S']}}</td>
+                            <td>{{data['recent_5_hashtags']['L'][0]['M']['friends_count']['S']}}</td>
+                            <td>{{data['recent_5_hashtags']['L'][0]['M']['followers_count']['S']}}</td>
+                          </tr>
+                          <tr>
+                            <td>{{data['recent_5_hashtags']['L'][1]['M']['created_at']['S']}}</td>
+                            <td>{{data['recent_5_hashtags']['L'][1]['M']['screen_name']['S']}}</td>
+                            <td>{{data['recent_5_hashtags']['L'][1]['M']['location']['S']}}</td>
+                            <td>{{data['recent_5_hashtags']['L'][1]['M']['friends_count']['S']}}</td>
+                            <td>{{data['recent_5_hashtags']['L'][1]['M']['followers_count']['S']}}</td>
+                          </tr>
+                          <tr>
+                            <td>{{data['recent_5_hashtags']['L'][2]['M']['created_at']['S']}}</td>
+                            <td>{{data['recent_5_hashtags']['L'][2]['M']['screen_name']['S']}}</td>
+                            <td>{{data['recent_5_hashtags']['L'][2]['M']['location']['S']}}</td>
+                            <td>{{data['recent_5_hashtags']['L'][2]['M']['friends_count']['S']}}</td>
+                            <td>{{data['recent_5_hashtags']['L'][2]['M']['followers_count']['S']}}</td>
+                          </tr>
+                          <tr>
+                            <td>{{data['recent_5_hashtags']['L'][3]['M']['created_at']['S']}}</td>
+                            <td>{{data['recent_5_hashtags']['L'][3]['M']['screen_name']['S']}}</td>
+                            <td>{{data['recent_5_hashtags']['L'][3]['M']['location']['S']}}</td>
+                            <td>{{data['recent_5_hashtags']['L'][3]['M']['friends_count']['S']}}</td>
+                            <td>{{data['recent_5_hashtags']['L'][3]['M']['followers_count']['S']}}</td>
+                          </tr>
+                          <tr>
+                            <td>{{data['recent_5_hashtags']['L'][4]['M']['created_at']['S']}}</td>
+                            <td>{{data['recent_5_hashtags']['L'][4]['M']['screen_name']['S']}}</td>
+                            <td>{{data['recent_5_hashtags']['L'][4]['M']['location']['S']}}</td>
+                            <td>{{data['recent_5_hashtags']['L'][4]['M']['friends_count']['S']}}</td>
+                            <td>{{data['recent_5_hashtags']['L'][4]['M']['followers_count']['S']}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div> 
               </div>
 
 
             </div>
           </div>
 
+
+
+
+          
         </div>
         <!-- /.container-fluid -->
 
@@ -199,22 +254,13 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2019</span>
+            <span>Copyright &copy; Brad Webb</span>
           </div>
         </div>
       </footer>
       <!-- End of Footer -->
-
     </div>
-    <!-- End of Content Wrapper -->
-
   </div>
-  <!-- End of Page Wrapper -->
-
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
 
   <!-- Bootstrap core JavaScript-->
   <script src="static/vendor/jquery/jquery.min.js"></script>
@@ -229,11 +275,25 @@
   <!-- Page level plugins -->
   <script src="static/vendor/chart.js/Chart.min.js"></script>
 
-  <!-- Page level custom scripts -->
-  <script src="static/js/demo/chart-area-demo.js"></script>
-  <script>myAreaChart({{data}})</script>
-  <script src="static/js/demo/chart-pie-demo.js"></script>
+<!-- Page level custom scripts -->
 
+<script src="static/js/demo/chart-area-demo.js"></script>
+{% block javascript %}
+<script>
+var chartData = {{data|tojson}}
+var myAreaChart = getChart(chartData, 'favourites')
+</script>
+
+<script src="static/js/demo/chart-pie-demo.js"></script>
+
+<script>hashtags = {{data|tojson}}
+document.getElementById("hashtag_1").setAttribute("style", hashtags['top_5_hashtags']['M']['1']['M']['percentage']['S']);
+document.getElementById("hashtag_2").setAttribute("style", hashtags['top_5_hashtags']['M']['2']['M']['percentage']['S']);
+document.getElementById("hashtag_3").setAttribute("style", hashtags['top_5_hashtags']['M']['3']['M']['percentage']['S']);
+document.getElementById("hashtag_4").setAttribute("style", hashtags['top_5_hashtags']['M']['4']['M']['percentage']['S']);
+document.getElementById("hashtag_5").setAttribute("style", hashtags['top_5_hashtags']['M']['5']['M']['percentage']['S']);
+</script>
+{% endblock %}
 </body>
 
 </html>

@@ -21,8 +21,8 @@ class twitter_api():
         try:
             auth = tweepy.OAuthHandler(os.getenv('API_KEY'), os.getenv('API_KEY_SECRET'))
             auth.set_access_token(os.getenv('ACCESS_TOKEN'), os.getenv('ACCESS_TOKEN_SECRET'))
-            self.api = tweepy.API(auth, wait_on_rate_limit=True, retry_errors=[429,500, 502,503,504], timeout=60, retry_delay=60, retry_count=10) 
-
+            #self.api = tweepy.API(auth, wait_on_rate_limit=True, retry_errors=[429,500, 502,503,504], timeout=60, retry_delay=60, retry_count=10) 
+            self.api = tweepy.API(auth)
         except tweepy.TweepError as e:
             print(e)
             
@@ -37,9 +37,10 @@ class twitter_api():
             return hashtag_list
         
         except tweepy.TweepError as e:
-            print(e)
+            print(e.args)
 
     def twitter_user_requests(self) -> object:
+        #Fix this, limited to 100 tweets, need to date limit it
         user_tweet_list = []
         try: 
             user_tweets = tweepy.Cursor(self.api.user_timeline, id=self.user_name, result_type='recent', tweet_mode='extended').items(1000)
@@ -50,5 +51,5 @@ class twitter_api():
             return user_tweet_list
         
         except tweepy.TweepError as e:
-            print(e)
+            print(e.args)
             

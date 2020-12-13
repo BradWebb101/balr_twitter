@@ -21,7 +21,8 @@ class dictionary_constructor():
         self.get_1_yr_tweets_counts()
         self.get_user_stats()
         self.tweet_by_month()
-        self.get_hashtag_data()
+        self.get_hashtag_text_data()
+        self.get_recent_hashtags_details()
         self.send_dictionary()
 
     def get_1_yr_tweets_counts(self):
@@ -77,8 +78,8 @@ class dictionary_constructor():
                             favourited_by_month += tweet['favorite_count']
                 
                 month_labels.append({'S':month_start_date.strftime('%d-%m-%Y')})
-                month_retweets.append({'S':str(retweeted_by_month)})
-                month_favourites.append({'S':str(favourited_by_month)})
+                month_retweets.append({'N':str(retweeted_by_month)})
+                month_favourites.append({'N':str(favourited_by_month)})
                 
                 self.tweets_month = {
                         'labels':{'L':month_labels},
@@ -105,12 +106,13 @@ class dictionary_constructor():
             print(e)
             self.tweets_user = {}               
 
-    def get_hashtag_data(self):
-        tweets = self.twitter_data.hashtags
+    def get_hashtag_text_data(self):
+        hashtags = self.twitter_data.hashtags
         tweet_count = 0
         hashtag_list = []
+        recent_hashtags = []
         try:
-            for item in tweets:
+            for item in hashtags:
                 tweet_count +=1
                 for i in item['entities']['hashtags']:
                     if i['text'] not in self.hashtags_in:
@@ -124,13 +126,32 @@ class dictionary_constructor():
             for k,v in top_5_hashtags_dict.items():
                 if position == 1:
                     hastag_highest_count = v
-                self.top_5_hash[str(position)] = {'M':{'hashtag':{'S':str(k)}, 'count':{'N':str(v)}, 'percentage':{'N': str(round((v/hastag_highest_count*100),2))}}}
+                self.top_5_hash[str(position)] = {'M':{'hashtag':{'S':str(k)}, 'count':{'N':str(v)}, 'percentage':{'S': f'width: {str(int((v/hastag_highest_count*100)))}%'}}}
                 position +=1
             self.top_5_hash['tweet_count'] = {'N':str(tweet_count)}
+            self.top_5_hash['recent_hashtags'] = {'L':recent_hashtags}
             
         except (TypeError, AttributeError) as e:
             print(e)
             self.top_5_hash = {}
+            
+    def get_recent_hashtags_details(self):
+        hashtags = self.twitter_data.hashtags
+        hashtag_count = 1
+        hashtag_list = []
+        for tweet in hashtags:
+            if hashtag_count <= 5:
+                hashtag_dict = {'M':{'created_at': {'S':datetime.strptime(tweet['created_at'], '%a %b %d %H:%M:%S %z %Y').strftime('%Y-%m-%d')}, 
+                                'screen_name': {'S':str(tweet['user']['screen_name'])},
+                                'location':{'S':str(tweet['user']['location'])},
+                                'followers_count':{'S':str(tweet['user']['followers_count'])},
+                                'friends_count':{'S':str(tweet['user']['friends_count'])}
+                                }}            
+                hashtag_list.append(hashtag_dict)
+            
+                hashtag_count +=1
+            
+        self.recent_hashtags = hashtag_list        
         
     def send_dictionary(self):
         dictionary = {
@@ -138,7 +159,8 @@ class dictionary_constructor():
                     'tweet_counts': {'M':self.tweet_counts}, 
                     'tweets_month':{'M':self.tweets_month},
                     'user_stats':{'M':self.tweets_user},
-                    'top_5_hashtags': {'M':self.top_5_hash}
+                    'top_5_hashtags': {'M':self.top_5_hash}, 
+                    'recent_5_hashtags':{'L':self.recent_hashtags}
                     }
         
         response = self.db_connect.put_item(TableName='balr_twitter',

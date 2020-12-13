@@ -1,45 +1,60 @@
-import os
-import boto3
-from datetime import datetime, timedelta
-from botocore.exceptions import ClientError
+from twitter_api import twitter_api
 from dotenv import load_dotenv
 
 load_dotenv()
 
-class get_data_dict():
+hashtags = twitter_api(user_name='balr', hashtags_in=['balr','Balr','BALR']).hashtags
 
-    def __init__(self):
-        self.db = None
-        self.relative_days = 0
-        self.dynamo_connect()
-        self.get_most_recent_data()
+hashtag_list = []
+for i in hashtags:
+    hashtag_list.append([i['entities']['hashtags'], i['full_text']])
+    
+print(hashtag_list)
+
+
+
+# import os
+# import boto3
+# from datetime import datetime, timedelta
+# from botocore.exceptions import ClientError
+# from dotenv import load_dotenv
+
+# load_dotenv()
+
+# class get_data_dict():
+
+#     def __init__(self):
+#         self.db = None
+#         self.relative_days = 0
+#         self.dynamo_connect()
+#         self.get_most_recent_data()
         
 
-    def dynamo_connect(self):
-        self.db = boto3.client(
-            'dynamodb',
-            aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
-            aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY'),
-            region_name=os.getenv('AWS_DEFAULT_REGION')
-            )
+#     def dynamo_connect(self):
+#         self.db = boto3.client(
+#             'dynamodb',
+#             aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
+#             aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY'),
+#             region_name=os.getenv('AWS_DEFAULT_REGION')
+#             )
         
-    def get_most_recent_data(self):
-        todays_date = datetime.today() + timedelta(days=-self.relative_days)
-        self.relative_days += 1
-        try:
-            if self.relative_days <= 7 :
-                response = self.db.get_item(
-                        TableName='balr_twitter', 
-                        Key={
-                            'date':{'S':todays_date.strftime('%d-%m-%Y')}
-                            },
-                        )['Items']
-                return response
-            else:
-                return {}
+#     def get_most_recent_data(self):
+#         todays_date = datetime.today() + timedelta(days=-self.relative_days)
+#         self.relative_days += 1
+#         try:
+#             if self.relative_days <= 7 :
+#                 response = self.db.get_item(
+#                         TableName='balr_twitter', 
+#                         Key={
+#                             'date':{'S':todays_date.strftime('%d-%m-%Y')}
+#                             },
+#                         )['Items']
+#                 return response
+#             else:
+#                 return {}
         
-        except KeyError as e:
-            self.get_most_recent_data()
+#         except KeyError as e:
+#             self.get_most_recent_data()
                
 
 

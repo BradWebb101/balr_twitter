@@ -27,16 +27,16 @@ function number_format(number, decimals, dec_point, thousands_sep) {
   return s.join(dec);
 }
 
+
 // Area Chart Example
+function getChart(chartData, graphValue){
 var ctx = document.getElementById("myAreaChart");
-var myAreaChart = function(data) {
-  console.log(data)
-  var chart = new Chart(ctx, {
+var myAreaChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ["January", "February", "March", "April", "May", "June"],
+    labels: chartData['tweets_month']['M']['labels']['L'].map(dict => dict['S']).reverse(),
     datasets: [{
-      label: "Earnings",
+      label: graphValue,
       lineTension: 0.3,
       backgroundColor: "rgba(78, 115, 223, 0.05)",
       borderColor: "rgba(78, 115, 223, 1)",
@@ -48,7 +48,7 @@ var myAreaChart = function(data) {
       pointHoverBorderColor: "rgba(78, 115, 223, 1)",
       pointHitRadius: 10,
       pointBorderWidth: 2,
-      data: [5000, 6000, 7000, 8000, 9821, 14984],
+      data: chartData['tweets_month']['M'][graphValue]['L'].map(dict => parseInt(dict['N'])).reverse(),
     }],
   },
   options: {
@@ -71,13 +71,15 @@ var myAreaChart = function(data) {
           drawBorder: false
         },
         ticks: {
-          maxTicksLimit: 7
+          maxTicksLimit: 12,
+          maxRotation: 62,
+          minRotation: 62
         }
       }],
       yAxes: [{
         ticks: {
           maxTicksLimit: 5,
-          padding: 10,
+          padding: 0,
           // Include a dollar sign in the ticks
           callback: function(value, index, values) {
             return number_format(value);
@@ -118,4 +120,4 @@ var myAreaChart = function(data) {
     }
   }
 })
-return chart};
+return myAreaChart};
