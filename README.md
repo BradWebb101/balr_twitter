@@ -1,20 +1,37 @@
-## Basic readme
+# Balr Twitter Dashboard
 
-##Installation 
+## Front-end 
+
+#### Flask boiler plate used (https://flask-admin-boilerplate.herokuapp.com/) all credit goes to them for the design of the front end.
+
+### Installation 
 - from ./front-end run
 ```bash 
 pip install -r requirements.txt
 ```
 
-in command lin 
+in command line
 ```cmd
 python app.py
 ```
 
-### Files i have played with 
+### Endpoints
+- This project is a single dashboard screen, once running the app.py file the URL provided form the flask app is the only end point active in this file. 
 
-- views/__init__.py
-- templates/index.html
-- templates/admin-layout.html (Deleted most of it to reduce the clutter, chech admin-layout-no_change.html for orignal)
--helpers/get_data_dict.py (Holds the database queries)
-- Font end chart.js, files in static/js/demo (Havent done this part yet)
+## Back-end 
+
+- Twitter data sourced using Tweepy and stored on AWS DynamoDB. 
+- If you are wanting to replicate this code, you will need to set up
+-- AWS account
+-- Twitter API credentials 
+
+### Installation
+- from ./back-end run 
+``` bash
+pip install -r requirements.txt
+```
+
+in command line 
+```cmd 
+python main.py
+```
