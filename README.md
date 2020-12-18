@@ -22,8 +22,8 @@ python app.py
 
 - Twitter data sourced using Tweepy and stored on AWS DynamoDB. 
 - If you are wanting to replicate this code, you will need to set up
--- AWS account
--- Twitter API credentials 
+1. AWS account
+2. Twitter API credentials 
 
 ### Installation
 - from ./back-end run 
