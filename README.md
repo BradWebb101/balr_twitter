@@ -23,7 +23,8 @@ python app.py
 - Twitter data sourced using Tweepy and stored on AWS DynamoDB. 
 - If you are wanting to replicate this code, you will need to set up
 1. AWS account
-2. Twitter API credentials 
+2. Twitter API credentials
+
 
 ### Installation
 - from ./back-end run 
@@ -31,7 +32,7 @@ python app.py
 pip install -r requirements.txt
 ```
 
-in command line 
+- in command line 
 ```cmd 
 python main.py
 ```
