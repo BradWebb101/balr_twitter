@@ -29,7 +29,7 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 
 
 // Area Chart Example
-function getChart(chartData, graphValue){
+function getAreaChart(chartData, graphValue){
 var ctx = document.getElementById("myAreaChart");
 var myAreaChart = new Chart(ctx, {
   type: 'line',

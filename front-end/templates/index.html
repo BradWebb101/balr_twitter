@@ -100,8 +100,8 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                       <div class="dropdown-header">Tweet engagement:</div>
-                      <a class="dropdown-item" href="#">Favourited</a>
-                      <a class="dropdown-item" href="#">Retweeted</a>
+                      <a class="dropdown-item" href="javascript: getChartArea({{data}}, 'favourites')">Favourited</a>
+                      <a class="dropdown-item" href="javascript: getChartArea({{data}}, 'retweetes')">Retweeted</a>
                       
                     </div>
                   </div>
@@ -137,17 +137,16 @@
               </div>
             </div>
           </div>
-
           <!-- Content Row -->
           <div class="row">
 
             <!-- Content Column -->
-            <div class="col-xl-4 col-lg-4">
+            <div class="col-sm-4 mb-2">
 
-              <!-- Project Card Example -->
-              <div class="card shadow mb-4">
+               <!-- Project Card Example -->
+               <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Hashtags most seen with #Balr ({{data['top_5_hashtags']['M']['tweet_count']['N']}} tweets)</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Associated hashtags with Tweets containing #Balr</h6>
                 </div>
                 <div class="card-body">
                   <h4 class="small font-weight-bold">#{{ data['top_5_hashtags']['M']['1']['M']['hashtag']['S'] }} <span class="float-right">{{ data['top_5_hashtags']['M']['1']['M']['count']['N'] }}</span></h4>
@@ -173,77 +172,64 @@
                 </div>
               </div>
             </div>
-             
 
-            <div class="col-xl-8 col-lg-7">
-
-              <!-- Illustrations -->
+               <!-- Donut Chart -->
+            <div class="col-xl-4 col-lg-3">
               <div class="card shadow mb-4">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">5 most recent tweets with #Balr</h6>
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Languages for Tweets containing #Balr</h6>
                 </div>
+                <!-- Card Body -->
                 <div class="card-body">
-                    <div class="table-responsive">
-                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                          <tr>
-                            <th>Date</th>
-                            <th>User name</th>
-                            <th>Location</th>
-                            <th>Friends</th>
-                            <th>Followers</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>{{data['recent_5_hashtags']['L'][0]['M']['created_at']['S']}}</td>
-                            <td>{{data['recent_5_hashtags']['L'][0]['M']['screen_name']['S']}}</td>
-                            <td>{{data['recent_5_hashtags']['L'][0]['M']['location']['S']}}</td>
-                            <td>{{data['recent_5_hashtags']['L'][0]['M']['friends_count']['S']}}</td>
-                            <td>{{data['recent_5_hashtags']['L'][0]['M']['followers_count']['S']}}</td>
-                          </tr>
-                          <tr>
-                            <td>{{data['recent_5_hashtags']['L'][1]['M']['created_at']['S']}}</td>
-                            <td>{{data['recent_5_hashtags']['L'][1]['M']['screen_name']['S']}}</td>
-                            <td>{{data['recent_5_hashtags']['L'][1]['M']['location']['S']}}</td>
-                            <td>{{data['recent_5_hashtags']['L'][1]['M']['friends_count']['S']}}</td>
-                            <td>{{data['recent_5_hashtags']['L'][1]['M']['followers_count']['S']}}</td>
-                          </tr>
-                          <tr>
-                            <td>{{data['recent_5_hashtags']['L'][2]['M']['created_at']['S']}}</td>
-                            <td>{{data['recent_5_hashtags']['L'][2]['M']['screen_name']['S']}}</td>
-                            <td>{{data['recent_5_hashtags']['L'][2]['M']['location']['S']}}</td>
-                            <td>{{data['recent_5_hashtags']['L'][2]['M']['friends_count']['S']}}</td>
-                            <td>{{data['recent_5_hashtags']['L'][2]['M']['followers_count']['S']}}</td>
-                          </tr>
-                          <tr>
-                            <td>{{data['recent_5_hashtags']['L'][3]['M']['created_at']['S']}}</td>
-                            <td>{{data['recent_5_hashtags']['L'][3]['M']['screen_name']['S']}}</td>
-                            <td>{{data['recent_5_hashtags']['L'][3]['M']['location']['S']}}</td>
-                            <td>{{data['recent_5_hashtags']['L'][3]['M']['friends_count']['S']}}</td>
-                            <td>{{data['recent_5_hashtags']['L'][3]['M']['followers_count']['S']}}</td>
-                          </tr>
-                          <tr>
-                            <td>{{data['recent_5_hashtags']['L'][4]['M']['created_at']['S']}}</td>
-                            <td>{{data['recent_5_hashtags']['L'][4]['M']['screen_name']['S']}}</td>
-                            <td>{{data['recent_5_hashtags']['L'][4]['M']['location']['S']}}</td>
-                            <td>{{data['recent_5_hashtags']['L'][4]['M']['friends_count']['S']}}</td>
-                            <td>{{data['recent_5_hashtags']['L'][4]['M']['followers_count']['S']}}</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div> 
+                  <div class="chart-pie pt-4">
+                    <canvas id="myPieChart"></canvas>
+                    <p></p>
+                  </div>
+                 
+                </div>
               </div>
-
+            </div>
+         <!-- Illustrations -->
+         <div class="col-xl-4 col-lg-3">
+         <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Total weekly Twitter stats for Tweets containing #Balr</h6>
+          </div>
+          <div class="card-body">
+            <div class="text-center">
 
             </div>
+            <p>Total tweets using #Balr: {{data['totals']['M']['tweets']['N']}}</p>
+            <p>Total potential reach: {{data['totals']['M']['reach']['N']}}</p>
+            <p>Total favourites: {{data['totals']['M']['total_favourites']['N']}}</p>
+            <p>Total retweets: {{data['totals']['M']['total_retweets']['N']}}</a></p>
           </div>
+        </div>
+      </div>
 
+     <!-- Illustrations -->
+   
+      <div class="card shadow mb-4">
+       <div class="card-header py-3">
+         <h6 class="m-0 font-weight-bold text-primary">Important things to note</h6>
+       </div>
+       <div class="card-body">
+         <div class="text-center">
 
-
-
-          
+         </div>
+         <p>- A week of Hashtags with #Balr time frame is 7 days. This time frame was chosen due to limits of request through twitter API and limiting server run time (Free tier AWS)</p>
+         <p>- Location data for Twitter is user generated and not an indication of actual loction, tweet language is used as a proxy for location.</p>
+         <p>- Total potential reach, is the sum of followers for unique accounts using the #Balr hashtag this week. If a user posts twice in 1 week only one set of followers will be counted.</p>
+         <p>- All data for this dashboard is publically available through Twitter API</p>
+         <p>- Source code this project is available at <a target="_blank" rel="nofollow" href="https://github.com/BradWebb101/balr_twitter">Github</a></p>
+         <br>
+         <br>
+         <br>
+         <br>
+        </div>
+     </div>
+   </div>
         </div>
         <!-- /.container-fluid -->
 
@@ -278,13 +264,14 @@
 <!-- Page level custom scripts -->
 
 <script src="static/js/demo/chart-area-demo.js"></script>
+<script src="static/js/demo/chart-pie-demo.js"></script>
 {% block javascript %}
 <script>
 var chartData = {{data|tojson}}
-var myAreaChart = getChart(chartData, 'favourites')
+var myAreaChart = getAreaChart(chartData, 'favourites')
+var myPieChart = getPieChart(chartData)
 </script>
 
-<script src="static/js/demo/chart-pie-demo.js"></script>
 
 <script>hashtags = {{data|tojson}}
 document.getElementById("hashtag_1").setAttribute("style", hashtags['top_5_hashtags']['M']['1']['M']['percentage']['S']);

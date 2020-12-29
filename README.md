@@ -2,7 +2,7 @@
 
 ## Front-end 
 
-#### Flask boiler plate used (https://flask-admin-boilerplate.herokuapp.com/) all credit goes to them for the design of the front end.
+#### Flask boiler plate used (https://github.com/yorubadeveloper/flask-admin-boilerplate) all credit goes to them for the design of the front end.
 
 ### Installation 
 - from ./front-end run

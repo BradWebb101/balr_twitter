@@ -3,13 +3,34 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-hashtags = twitter_api(user_name='balr', hashtags_in=['balr','Balr','BALR']).hashtags
 
-hashtag_list = []
-for i in hashtags:
-    hashtag_list.append([i['entities']['hashtags'], i['full_text']])
+data = twitter_api(user_name='Balr', hashtags_in=['balr','Balr','BALR'])
+
+for item in data.hashtags:
+    if item['lang'] == 'in':
+        print(item)
+
+
+
+# from dateutil.relativedelta import relativedelta
+# from datetime import datetime
+
+# print(datetime.today() + relativedelta(years=-1))
+
+
+
+# from twitter_api import twitter_api
+# from dotenv import load_dotenv
+
+# load_dotenv()
+
+# hashtags = twitter_api(user_name='balr', hashtags_in=['balr','Balr','BALR']).hashtags
+
+# hashtag_list = []
+# for i in hashtags:
+#     hashtag_list.append([i['entities']['hashtags'], i['full_text']])
     
-print(hashtag_list)
+# print(hashtag_list)
 
 
 
