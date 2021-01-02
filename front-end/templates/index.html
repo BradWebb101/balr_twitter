@@ -7,7 +7,7 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800"> 12 Month's of Balr Twitter @ {{ data['date']['S'] }}</h1>
+            <h1 class="h3 mb-0 text-gray-800"> Snapshot of Balr Twitter @ {{ data['date']['S'] }}</h1>
             
           </div>
 
@@ -21,7 +21,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Followers</div>
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Followers (Total)</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">{{ data['user_stats']['M']['followers']['N'] }}</div>
                     </div>
                     <div class="col-auto">
@@ -38,7 +38,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Tweets</div>
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Tweets (Total)</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">{{ data['user_stats']['M']['statuses']['N'] }} </div>
                     </div>
                     <div class="col-auto">
@@ -55,7 +55,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total retweets</div>
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total retweets (12 M)</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">{{ data['tweet_counts']['M']['retweet_count']['N'] }} </div>
                     </div>
                     <div class="col-auto">
@@ -72,7 +72,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Total favourites</div>
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Total favourites (12 M)</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">{{data['tweet_counts']['M']['favourite_count']['N']}}</div>
                     </div>
                     <div class="col-auto">
@@ -93,7 +93,7 @@
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Tweet activity</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Tweet activity (12 M)</h6>
                   <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -120,7 +120,7 @@
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Most Favourited Tweet</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Most Favourited Tweet (12 M)</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -146,7 +146,7 @@
                <!-- Project Card Example -->
                <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Associated hashtags with Tweets containing #Balr</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Associated hashtags with Tweets containing #Balr (7 d)</h6>
                 </div>
                 <div class="card-body">
                   <h4 class="small font-weight-bold">#{{ data['top_5_hashtags']['M']['1']['M']['hashtag']['S'] }} <span class="float-right">{{ data['top_5_hashtags']['M']['1']['M']['count']['N'] }}</span></h4>
@@ -178,7 +178,7 @@
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Languages for Tweets containing #Balr</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Languages for Tweets containing #Balr (7 d)</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -194,14 +194,14 @@
          <div class="col-xl-4 col-lg-3">
          <div class="card shadow mb-4">
           <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Total weekly Twitter stats for Tweets containing #Balr</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Twitter stats for Tweets containing #Balr (7 d)</h6>
           </div>
           <div class="card-body">
             <div class="text-center">
 
             </div>
-            <p>Total tweets using #Balr: {{data['totals']['M']['tweets']['N']}}</p>
-            <p>Total potential reach: {{data['totals']['M']['reach']['N']}}</p>
+            <p>Tweets this week using #Balr: {{data['totals']['M']['tweets']['N']}}</p>
+            <p>Total potential reach (see notes): {{data['totals']['M']['reach']['N']}}</p>
             <p>Total favourites: {{data['totals']['M']['total_favourites']['N']}}</p>
             <p>Total retweets: {{data['totals']['M']['total_retweets']['N']}}</a></p>
           </div>
@@ -218,7 +218,7 @@
          <div class="text-center">
 
          </div>
-         <p>- A week of Hashtags with #Balr time frame is 7 days. This time frame was chosen due to limits of request through twitter API and limiting server run time (Free tier AWS)</p>
+         <p>- A week of Hashtags with #Balr time frame is 7 days (7 d). This time frame was chosen due to limits of request through twitter API and limiting server run time (Free tier AWS)</p>
          <p>- Location data for Twitter is user generated and not an indication of actual loction, tweet language is used as a proxy for location.</p>
          <p>- Total potential reach, is the sum of followers for unique accounts using the #Balr hashtag this week. If a user posts twice in 1 week only one set of followers will be counted.</p>
          <p>- All data for this dashboard is publically available through Twitter API</p>
