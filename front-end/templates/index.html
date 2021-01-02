@@ -1,5 +1,5 @@
 {% include 'admin-layout.html' %}
-</br>
+
 <body id="page-top">
 
         <!-- Begin Page Content -->
@@ -38,7 +38,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Tweets (Total)</div>
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Tweets (12M)</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">{{ data['user_stats']['M']['statuses']['N'] }} </div>
                     </div>
                     <div class="col-auto">
@@ -138,15 +138,16 @@
             </div>
           </div>
           <!-- Content Row -->
-          <div class="row">
+          <div class="container-fluid">
+          <div class='row'>
 
             <!-- Content Column -->
-            <div class="col-sm-4 mb-2">
+            <div class="col-lg-5 mb-2">
 
                <!-- Project Card Example -->
                <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Associated hashtags with Tweets containing #Balr (7 d)</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Other hashtags seen with #Balr (7d)</h6>
                 </div>
                 <div class="card-body">
                   <h4 class="small font-weight-bold">#{{ data['top_5_hashtags']['M']['1']['M']['hashtag']['S'] }} <span class="float-right">{{ data['top_5_hashtags']['M']['1']['M']['count']['N'] }}</span></h4>
@@ -178,7 +179,7 @@
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Languages for Tweets containing #Balr (7 d)</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Languages for Tweets containing #Balr (7d)</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -191,45 +192,23 @@
               </div>
             </div>
          <!-- Illustrations -->
-         <div class="col-xl-4 col-lg-3">
+         <div class="col-xl-3 col-lg-3">
          <div class="card shadow mb-4">
           <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Twitter stats for Tweets containing #Balr (7 d)</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Data Caveats</h6>
           </div>
           <div class="card-body">
             <div class="text-center">
 
             </div>
-            <p>Tweets this week using #Balr: {{data['totals']['M']['tweets']['N']}}</p>
-            <p>Total potential reach (see notes): {{data['totals']['M']['reach']['N']}}</p>
-            <p>Total favourites: {{data['totals']['M']['total_favourites']['N']}}</p>
-            <p>Total retweets: {{data['totals']['M']['total_retweets']['N']}}</a></p>
+            <p>-Tweets using #Balr, 7d limit is due to quantity of tweets and limitations with Twitter API(30 tweets per request)</p>
+            <p>-Tweet language used as proxy for location, twitter location data unusable</p>
+            <p>-Source code this project is available at my <a target="_blank" rel="nofollow" href="https://github.com/BradWebb101/balr_twitter">Github</a></p>
           </div>
         </div>
-      </div>
+      
 
-     <!-- Illustrations -->
-   
-      <div class="card shadow mb-4">
-       <div class="card-header py-3">
-         <h6 class="m-0 font-weight-bold text-primary">Important things to note</h6>
-       </div>
-       <div class="card-body">
-         <div class="text-center">
 
-         </div>
-         <p>- A week of Hashtags with #Balr time frame is 7 days (7 d). This time frame was chosen due to limits of request through twitter API and limiting server run time (Free tier AWS)</p>
-         <p>- Location data for Twitter is user generated and not an indication of actual loction, tweet language is used as a proxy for location.</p>
-         <p>- Total potential reach, is the sum of followers for unique accounts using the #Balr hashtag this week. If a user posts twice in 1 week only one set of followers will be counted.</p>
-         <p>- All data for this dashboard is publically available through Twitter API</p>
-         <p>- Source code this project is available at <a target="_blank" rel="nofollow" href="https://github.com/BradWebb101/balr_twitter">Github</a></p>
-         <br>
-         <br>
-         <br>
-         <br>
-        </div>
-     </div>
-   </div>
         </div>
         <!-- /.container-fluid -->
 

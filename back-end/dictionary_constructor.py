@@ -100,7 +100,7 @@ class dictionary_constructor():
             for items in self.twitter_data.tweets:
                 self.tweets_user = {
                             'followers': {'N':str(items['user']['followers_count'])},
-                            'statuses': {'N':str(items['user']['statuses_count'])}
+                            'statuses': {'N':str(len(self.twitter_data.tweets))}
                             }
                 break
             
