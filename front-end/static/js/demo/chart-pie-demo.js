@@ -31,7 +31,7 @@ var chart = new Chart(ctx, {
     },
     legend: {
       display: true,
-      position: 'right'
+      position: 'bottom'
     },
     cutoutPercentage: 60,
   },
