@@ -6,6 +6,7 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
+          <p></p>
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800"> Snapshot of Balr Twitter @ {{ data['date']['S'] }}</h1>
             
@@ -93,16 +94,15 @@
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Tweet activity (12 M)</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Favourites by month</h6>
                   <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                       <div class="dropdown-header">Tweet engagement:</div>
-                      <a class="dropdown-item" href="javascript: getChartArea({{data}}, 'favourites')">Favourited</a>
-                      <a class="dropdown-item" href="javascript: getChartArea({{data}}, 'retweetes')">Retweeted</a>
-                      
+                      <a class="dropdown-item" href="http://127.0.0.1:5000/favourites">Favourited</a>
+                      <a class="dropdown-item" href="http://127.0.0.1:5000/retweets">Retweeted</a>
                     </div>
                   </div>
                 </div>
@@ -120,7 +120,7 @@
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Most Favourited Tweet (12 M)</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Most Favourited Tweet</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -136,9 +136,9 @@
                 </div>
               </div>
             </div>
-          </div>
+         
           <!-- Content Row -->
-          <div class="container-fluid">
+         
             <div class='row'>
 
             <!-- Content Column -->
@@ -147,9 +147,10 @@
                <!-- Project Card Example -->
                <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Other hashtags seen with #Balr (7d)</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Other hashtags seen with #Balr this week</h6>
                 </div>
                 <div class="card-body">
+                  <div class="chart-area">
                   <h4 class="small font-weight-bold">#{{ data['top_5_hashtags']['M']['1']['M']['hashtag']['S'] }} <span class="float-right">{{ data['top_5_hashtags']['M']['1']['M']['count']['N'] }}</span></h4>
                   <div class="progress mb-4">
                     <div id= "hashtag_1" class="progress-bar bg-danger" role="progressbar" style="" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
@@ -173,17 +174,19 @@
                 </div>
               </div>
             </div>
+          </div>
 
                <!-- Donut Chart -->
             <div class="col-xl-4 col-lg-3">
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Languages for Tweets containing #Balr (7d)</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Languages for Tweets containing #Balr this week</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                  <div class="chart-pie pt-4">
+                  
+                  <div class="chart-area">
                     <canvas id="myPieChart"></canvas>
                     
                   </div>
@@ -198,20 +201,21 @@
             <h6 class="m-0 font-weight-bold text-primary">Data Caveats</h6>
           </div>
           <div class="card-body">
-            <div class="text-center">
+            <div class="chart-area">
 
-            </div>
-            <p>-Tweets using #Balr, 7d limit is due to quantity of tweets and limitations with Twitter API (30 tweets per request)</p>
+              <p>-All data for the user Balr is for a 12 month period, this includes retweets/favourites by month and most retweets/favourites tweet</p>
+            <p>-Tweets using #Balr, including other Hashtags and Languages with #Balr is a 7 day period, due to quantity of tweets and limitation of request with Twitter API ({{data['totals']['M']['tweets']['N']}} tweets)</p>
             <p>-Tweet language used as proxy for location, twitter location data unusable</p>
             <p>-Source code this project is available at my <a target="_blank" rel="nofollow" href="https://github.com/BradWebb101/balr_twitter">Github</a></p>
+          </div>
           </div>
         </div>
       
 
 
-        </div>
-        <!-- /.container-fluid -->
-
+      </div>
+      <!-- /.container-fluid -->
+   
       </div>
       <!-- End of Main Content -->
 

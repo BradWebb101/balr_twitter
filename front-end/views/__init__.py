@@ -9,6 +9,22 @@ import json
 def home():
         data_dict = get_data_dict.get_data_dict().data
         if data_dict:
-                return render_template('index.html', data=data_dict)
+                return render_template('favourites.html', data=data_dict)
+        else:
+            return render_template("404.html")  
+
+@app.route('/favourites', methods=["GET"])
+def favourites():
+        data_dict = get_data_dict.get_data_dict().data
+        if data_dict:
+                return render_template('favourites.html', data=data_dict)
+        else:
+            return render_template("404.html")  
+    
+@app.route('/retweets', methods=["GET"])
+def retweets():
+        data_dict = get_data_dict.get_data_dict().data
+        if data_dict:
+                return render_template('retweets.html', data=data_dict)
         else:
             return render_template("404.html")  
