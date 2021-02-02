@@ -1,6 +1,6 @@
 # Personal Project Portfolio
 
-This project is a dashboard I built, with data from Twitter using #BALR. BALR is a dutch lifestyle brand https://www.balr.com/  
+This project is a dashboard I built, with data from Twitter using #BALR. https://www.balr.com/  
 
 ## Screenshot
 
@@ -13,13 +13,13 @@ TBA
 
 ## Things i borrowed
 
-- HTML template https://startbootstrap.com/theme/sb-admin-2
+- HTML dashbaord template https://startbootstrap.com/theme/sb-admin-2. SB Admin 2 is a Bootstrap 4 admin theme.
 
 ## How is it built
 
 ### Front end
 
-- This project is built on HTML and Vanilla Javascript. I used SB Admin 2 template for the dashboard.
+- This project is built on HTML and Vanilla Javascript. Templating is done with Handlebars. 
 
 ### Back end
 
@@ -66,4 +66,42 @@ Run back end code
 
 ``` python
 python main.py
+```
+
+## Example code 
+
+This project uses Python lists and dictionaries to iterate over the JSON and reconstruct serialised objects for Dynamo DB.
+
+``` python 
+def language_of_tweet(self):
+        language_list = []
+        for tweet in self.twitter_data.hashtags:
+            language_list.append(tweet['lang'])
+   
+        language_counts = {}
+        for n in list(set(language_list)):
+            language_counts[n] = language_list.count(n)
+        
+        language_counts = dict(sorted(language_counts.items(), key=lambda item: item[1], reverse=True))
+
+        count = 0
+        others = 0
+        lang_labels = []
+        lang_data = []
+        for k,v in language_counts.items():
+            if count < 5:
+                if k != 'und':
+                    lang_labels.append({'S':str(k)})
+                    lang_data.append({'N':str(v)})
+                    count += 1
+                else:
+                    count += 1
+                    others += v
+            else:
+                 others += v
+        lang_labels.append({'S':'Other'})
+        lang_data.append({'N':str(others)})
+        
+        self.dict['lang_labels'] = {'L':lang_labels}
+        self.dict['lang_data'] = {'L':lang_data}
 ```
