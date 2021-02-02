@@ -4,7 +4,7 @@ This project is a dashboard I built, with data from Twitter using #BALR. BALR is
 
 ## Screenshot
 
-![alt text](./readme_images/screenshot.png "Title")
+![alt text](./readme_images/screenshot.PNG "Title")
 
 ## Project Example
 
