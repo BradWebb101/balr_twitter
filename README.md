@@ -13,18 +13,18 @@ TBA
 
 ## Things i borrowed
 
-- HTML dashbaord template https://startbootstrap.com/theme/sb-admin-2. SB Admin 2 is a Bootstrap 4 admin theme.
+- HTML dashboard template https://startbootstrap.com/theme/sb-admin-2. SB Admin 2 is a Bootstrap 4 admin theme template.
 
 ## How is it built
 
 ### Front end
 
-- This project is built on HTML and Vanilla Javascript. Templating is done with Handlebars. 
+- This project is built on HTML and Vanilla Javascript. Templating is done with Handlebars.
 
 ### Back end
 
 - This site is built as a serverless application, it uses AWS Lambda, S3, DynamoDB, API Gateway and Cloudfront.
-- The back end is written in Python, using Tweepy to get data from the Twitter API and Boto3 to connect to Dynamo DB.
+- The back end is written in Python, using Tweepy to get data from the Twitter API.
   
 ## Infrastructure
 
@@ -33,9 +33,10 @@ TBA
 ## Downloading and usage
 
 ### Front-end
-As this project is just HTML and Vanilla JS, the only dependency on the front end is a web browser. 
+As the front end is just HTML and Vanilla JS, the only dependency on the front end is a web browser. The data for the dashbaord is on my AWS account. To test locally, i have included a example object with data which i have commented out. Open the file js/load-functions.js and follow the instructions in that file to use sample data on the dashobard.
 
 ### Back-end
+
 Clone this repo 
 
 ``` git
