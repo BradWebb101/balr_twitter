@@ -1,6 +1,5 @@
 .env
 .vscode
 .venv
-.flaskenv
 
-test.py
+

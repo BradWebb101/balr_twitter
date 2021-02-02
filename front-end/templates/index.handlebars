@@ -1,0 +1,236 @@
+<!-- Page Heading -->
+<p></p>
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800"> Snapshot of Balr Twitter @ {{date}}</h1>
+
+</div>
+
+<!-- Content Row -->
+<div class="row">
+
+
+  <!-- Earnings (Monthly) Card Example -->
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-primary shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Followers (Total)</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">{{followers}}</div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Earnings (Monthly) Card Example -->
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Tweets (12M)</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">{{statuses}} </div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Earnings (Monthly) Card Example -->
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-info shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total retweets (12M)</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">{{retweet_count}} </div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pending Requests Card Example -->
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-warning shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Total favourites (12M)</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">{{favourite_count}}</div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-comments fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Content Row -->
+
+<div class="row">
+
+  <!-- Area Chart -->
+  <div class="col-xl-8 col-lg-7">
+    <div class="card shadow mb-4">
+      <!-- Card Header - Dropdown -->
+      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 id='charttitle' class="m-0 font-weight-bold text-primary">Favourites by month</h6>
+        <div class="dropdown no-arrow">
+          <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+            <div class="dropdown-header">Tweet engagement:</div>
+            <a class="dropdown-item" href="javascript:updateDashboardFavourites();">Favourited</a>
+            <a class="dropdown-item" href="javascript:updateDashboardRetweets();">Retweeted</a>
+          </div>
+        </div>
+      </div>
+      <!-- Card Body -->
+      <div class="card-body" style='margin-top: 10px'>
+        <div class="chart-area">
+          <canvas id="myAreaChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pie Chart -->
+  <div class="col-xl-4 col-lg-5">
+    <div class="card shadow mb-4">
+      <!-- Card Header - Dropdown -->
+      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 id='mostboxname' class="m-0 font-weight-bold text-primary">Most Favourited Tweet</h6>
+      </div>
+      <!-- Card Body -->
+      <div id='embededtweet2' class="card-body">
+        <div class="chart-area">
+          <blockquote class="twitter-tweet" data-cards="hidden" data-conversation="none">
+            <a id='mosttweetbox' href="https://twitter.com/balr/status/{{most_favourited_id}}?ref_src=twsrc%5Etfw"></a>
+          </blockquote>
+          <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Content Row -->
+
+<div class='row'>
+
+  <!-- Content Column -->
+  <div class="col-xl-4 col-lg-3">
+
+    <!-- Project Card Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">Other hashtags seen with #Balr (7D)</h6>
+      </div>
+      <div class="card-body"  style='margin-top: 10px'>
+        <div class="chart-area">
+          <h4 class="small font-weight-bold">#{{hashtag_1_hashtag}} <span class="float-right">{{hashtag_1_count}}</span>
+          </h4>
+          <div class="progress mb-4">
+            <div id="hashtag_1" class="progress-bar bg-danger" role="progressbar"
+              style="width: {{hashtag_1_percentage}}" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <h4 class="small font-weight-bold">#{{hashtag_2_hashtag}}<span class="float-right">{{hashtag_2_count}}</span>
+          </h4>
+          <div class="progress mb-4">
+            <div id="hashtag_2" class="progress-bar bg-warning" role="progressbar"
+              style="width: {{hashtag_2_percentage}}" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <h4 class="small font-weight-bold">#{{hashtag_3_hashtag}}<span class="float-right">{{hashtag_3_count}}</span>
+          </h4>
+          <div class="progress mb-4">
+            <div id="hashtag_3" class="progress-bar" role="progressbar" style="width: {{hashtag_3_percentage}}"
+              aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <h4 class="small font-weight-bold">#{{hashtag_4_hashtag}}<span class="float-right">{{hashtag_4_count}}</span>
+          </h4>
+          <div class="progress mb-4">
+            <div id="hashtag_4" class="progress-bar bg-info" role="progressbar" style="width: {{hashtag_4_percentage}}"
+              aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <h4 class="small font-weight-bold">#{{hashtag_5_hashtag}}<span class="float-right">{{hashtag_5_count}}</span>
+          </h4>
+          <div class="progress">
+            <div id="hashtag_5" class="progress-bar bg-success" role="progressbar"
+              style="width: {{hashtag_5_percentage}}" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Random tweet -->
+  <div class="col-xl-4 col-lg-3">
+    <div class="card shadow mb-4">
+      <!-- Card Header - Dropdown -->
+      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">Random Tweet with #Balr</h6>
+      </div>
+      <div id='embededtweet1' class="card-body">
+        <div class="chart-area">
+          <blockquote class="twitter-tweet" data-cards="hidden" data-conversation="none"> 
+            <a href="https://twitter.com/{{random_user_name}}/status/{{random_tweet_id}}?ref_src=twsrc%5Etfw"></a>
+          </blockquote>
+          <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <p><b>User name:</b> {{random_user_name}}</p>
+        <p><b>Total followers:</b> {{random_tweet_followers}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Illustrations -->
+  <div class="col-xl-4 col-lg-3">
+    <div class="card shadow mb-4">
+      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">Languages for Tweets containing #Balr (7D)</h6>
+      </div>
+      <!-- Card Body -->
+      <div class="card-body" style='margin-top: 10px'>
+        <div class="chart-area">
+          <canvas id="myPieChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+  <div class="row">
+    <div class="col-xl-12 col-lg-3">
+      <div class="card shadow mb-4">
+        <!-- Card Header - Dropdown -->
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+          <h6 class="m-0 font-weight-bold text-primary">Data Caveats</h6>
+        </div>
+        <div class="card-body">
+          <p>-All data for the user 'Balr' is 12 month's, this includes retweets/favourites by month and most
+            favourited tweet</p>
+          <p>-Tweets using #Balr, including other Hashtags, Random tweet and Languages with #Balr is a 7 day period, due
+            to quantity of tweets and limitation of request with Twitter API. Total tweets last 7 days = {{total_tweets}}
+            tweets</p>
+          <p>-Tweet language used as proxy for location, twitter does not have reliable location data on users (Location field is user generated)</p>
+          <p>-This dashboard was developed to view on a computer, not the most mobile friendly page.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

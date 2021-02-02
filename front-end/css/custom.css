@@ -1,0 +1,11 @@
+@media screen and (max-width: 1024px) {
+    #embededtweet1 {
+        display: none !important;
+    }
+    }
+
+@media screen and (max-width: 1024px) {
+    #embededtweet2 {
+        display: none !important;
+    }
+    }
