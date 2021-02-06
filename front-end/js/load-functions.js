@@ -25,15 +25,24 @@ var templateScript = Handlebars.templates.index(dbData)
 //Rendering index template to body and invoking chart JS graphs
 
 // 
-
-$(document).ready(function() {
+let appendBody = async () => {
   $('#container').append(templateScript)
-})
+}
 
-window.onload = function(){
+let invokeCharts = () => {
   invokeChart()
   invokeAreaChart(dbData.favourites, 'Favourites by month');
 }
+
+$(document).ready(function() {
+  appendBody()
+  .then(invokeCharts())
+})
+
+// window.onload = function(){
+//   invokeChart()
+//   invokeAreaChart(dbData.favourites, 'Favourites by month');
+// }
 
 
 // Functions to refresh and update dashboard, between retweets and favourites with drop down.
