@@ -4,14 +4,14 @@ Chart.defaults.global.defaultFontColor = '#858796';
 
 // Pie Chart Example
 var chart
-function invokeChart() {
+function invokeChart(data) {
 var ctx = document.getElementById("myPieChart");
 chart = new Chart(ctx, {
   type: 'doughnut',
   data: {
-    labels: dbData.lang_labels,
+    labels: data.lang_labels,
     datasets: [{
-      data: dbData.lang_data,
+      data: data.lang_data,
       backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc','#f6c23e','#e74a3b'],
       hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf','#2c9faf','#2c9faf'],
       hoverBorderColor: "rgba(234, 236, 244, 1)",

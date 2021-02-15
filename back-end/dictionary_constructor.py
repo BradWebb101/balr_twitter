@@ -138,7 +138,6 @@ class dictionary_constructor():
                        
     def get_random_tweet(self):
         hashtags = self.twitter_data.hashtags
-        print(hashtags[0])
         random_number = random.randint(0, (len(hashtags)-1))
         self.dict['random_tweet_id'] = {'N': str(hashtags[random_number]['id'])}
         self.dict['random_user_name'] = {'S': str(hashtags[random_number]['user']['screen_name'])}

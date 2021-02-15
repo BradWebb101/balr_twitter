@@ -29,12 +29,12 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 
 // Area Chart Example
 var myAreaChart
-function invokeAreaChart (data, label) {
+function invokeAreaChart (data, label, variable) {
 var ctx = document.getElementById("myAreaChart");
 myAreaChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: dbData.labels,
+    labels: data.labels,
     datasets: [{
       label: label,
       lineTension: 0.3,
@@ -48,7 +48,7 @@ myAreaChart = new Chart(ctx, {
       pointHoverBorderColor: "rgba(78, 115, 223, 1)",
       pointHitRadius: 10,
       pointBorderWidth: 2,
-      data: data,
+      data: data[variable],
     }],
   },
   options: {

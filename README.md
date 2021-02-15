@@ -8,8 +8,7 @@ This project is a dashboard I built, with data from Twitter using #BALR. https:/
 
 ## Project Example
 
-<!-- [Website](https://bradwebb101.com) -->
-TBA
+![Website](https://balr-twitter.bradwebb101.com/)
 
 ## Things i borrowed
 
