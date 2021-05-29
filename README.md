@@ -1,3 +1,6 @@
+# Current state
+This was my first front end project, after finishing it i realised the limitations of HTML and vanilla JS. Currently working on rewriting in React. Would not recommend using this project as a boiler plate for a project, learn from my mistakes. 
+
 # Personal Project Portfolio
 
 This project is a dashboard I built, with data from Twitter using #BALR. https://www.balr.com/  
